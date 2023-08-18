@@ -1,0 +1,93 @@
+﻿@model IEnumerable<WebSiteBanHangTheThao.Context.Product>
+
+@{
+    ViewBag.Title = "Sanpham";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Sản phẩm</h2>
+
+<p>
+    @Html.ActionLink("Tạo sản phẩm mới", "Taosanpham")
+
+</p>
+<p>
+    <a href="~/Home/Trangchu">Quay về trang chủ</a>
+
+</p>
+@using (Html.BeginForm("Sanpham", "Sanpham", FormMethod.Get))
+{
+    <p>
+        Tìm tên sản phẩm @Html.TextBox("Timkiem",ViewBag.CurrentFiler as string)
+       <input type="submit" value="Tìm kiếm"/>
+
+    </p>
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Avata)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ShortDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FullDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sale)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Brand)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Category)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                <img src="~/Content/images/items/@item.Avata" style="width:50%" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShortDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FullDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sale)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Brand.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.Name)
+            </td>
+            <td style="width:10%">
+                @Html.ActionLink("Chỉnh sửa", "Chinhsua", new { id = item.Id }) |
+                <br />
+                @Html.ActionLink("Chi tiết sản phẩm", "Chitietsanpham", new { id = item.Id }) |
+                <br />
+                @Html.ActionLink("Xóa sản phẩm", "Xoasanpham", new { id = item.Id })
+
+            </td>
+        </tr>
+    }
+
+</table>

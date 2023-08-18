@@ -1,0 +1,36 @@
+﻿@model List<WebSiteBanHangTheThao.Context.Category>
+@{
+    ViewBag.Title = "Loaisanpham";
+}
+
+
+
+<<section class="section-content padding-y">
+    <div class="container">
+        <nav class="row">
+            @foreach (var item in Model)
+            {
+            <a href="@Url.Action("Danhsachloaisanpham","Catogory",new {id=item.Id })">
+                <div class="col-md-3">
+
+                    <div class="card card-category">
+                        <div class="img-wrap">
+                            <img style="height:200px" src="~/Content/images/items/@item.Avata">
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title" style="text-align:center"><a href="#">@item.Name</a></h4>
+
+                        </div>
+                    </div>
+                </div>
+            </a>
+                
+            }
+
+        </nav>
+
+    </div> 
+</section>
+
+
+
